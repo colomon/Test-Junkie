@@ -1,4 +1,4 @@
-module Test::Junkie;
+unit module Test::Junkie;
 
 class Tracker {
     has @.directories;
