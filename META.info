@@ -1,4 +1,5 @@
 {
+    "perl"        : "6.*",
     "name"        : "Test::Junkie",
     "version"     : "*",
     "description" : "A continuous test runner for Perl 6",
