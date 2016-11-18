@@ -19,7 +19,7 @@ use Test::Junkie;
     my @actual = $tracker.files.map({.path});
     my @expected = <lib/Test/Junkie.pm t/tracker.t>;
     
-    is @actual, @expected, "should track .pm and .t files in the configured directory trees";
+    is @actual, @expected, "should track .pm, .pm6 and .t files in the configured directory trees";
 }
 
 # refreshing tracked files
