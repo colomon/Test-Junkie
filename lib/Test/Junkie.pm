@@ -3,8 +3,8 @@ module Test::Junkie {
         has @.directories;
         has $!timestamp;
 
-        multi method new()              { self.bless(*, directories => <lib t>) }
-        multi method new(*@directories) { self.bless(*, :@directories) }
+        multi method new()              { self.bless(directories => <lib t>) }
+        multi method new(*@directories) { self.bless(:@directories) }
 
         method files() {
             gather find_files @.directories;
