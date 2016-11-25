@@ -3,8 +3,8 @@ module Test::Junkie {
         has @.directories;
         has $!timestamp;
 
-        multi method new()              { self.bless(*, directories => <lib t>) }
-        multi method new(*@directories) { self.bless(*, :@directories) }
+        multi method new()              { self.bless(directories => <lib t>) }
+        multi method new(*@directories) { self.bless(:@directories) }
 
         method files() {
             gather find_files @.directories;
@@ -35,11 +35,15 @@ module Test::Junkie {
             for @dirs -> $directory {
                 for dir($directory) -> $file {
                     given $file.IO { 
-                        when .f { take $_ }
+                        when .f && match_perl_source($_) { take $_ }
                         when .d { find_files .path }
                     }
                 }
             }    
+        }
+
+        sub match_perl_source($file) {
+            return $file ~~ m/\.pm$|\.pm6$|\.t$/;
         }
     }
 }
